@@ -1,33 +1,48 @@
 # 🛡️ DARKGUARD
 
-AI-powered Dark Pattern Detector
+**AI-powered Dark Pattern Detector**
 
-DARKGUARD is a machine-learning prototype that analyzes website language and predicts whether a text snippet contains a dark pattern.
+DARKGUARD is a Streamlit machine-learning prototype that analyzes website text and predicts whether it contains a dark pattern.
 
 ## Problem
 
-Shopping, booking, and other online platforms can use manipulative wording such as fake urgency, scarcity, and social proof. DARKGUARD is designed to identify these patterns automatically from text.
+Online platforms sometimes use wording that creates artificial pressure or nudges users toward a decision. Examples include fake urgency, scarcity, and social proof.
 
-## Solution
+## What the prototype does
 
-Website text → basic cleaning → TF-IDF → Logistic Regression → Dark Pattern / Not Dark Pattern
+A user pastes website text and DARKGUARD returns:
 
-## Prototype features
+- Dark Pattern / Not Dark Pattern
+- Model confidence
+- Top TF-IDF features that influenced the prediction
+- A separate quick scan for urgency, scarcity, and social-proof signals
+- Basic model and dataset insights
 
-- Dark-pattern prediction
-- Confidence score
-- Model-based feature contribution explanation
-- Rule-based signal scan for urgency, scarcity, and social proof
-- Model and dataset insights
-- Baseline confusion matrix
+## ML Pipeline
+
+```
+Website Text
+    ↓
+Basic Text Cleaning
+    ↓
+TF-IDF
+    ↓
+Logistic Regression
+    ↓
+Dark Pattern / Not Dark Pattern
+```
 
 ## Baseline
 
-The baseline uses an 80/20 stratified train/test split with random_state=42.
+The current baseline uses:
 
-Current prototype test accuracy is approximately 93.4% on the supplied dataset.
+- 80/20 stratified train/test split
+- TF-IDF with 1- and 2-word features
+- Logistic Regression
 
-## Tech stack
+The prototype achieved approximately **93.4% test accuracy** on the current dataset under this split.
+
+## Tech Stack
 
 - Python
 - Pandas
@@ -39,32 +54,45 @@ Current prototype test accuracy is approximately 93.4% on the supplied dataset.
 
 ## Dataset
 
-The project includes dataset.tsv with website snippets, binary labels, and pattern categories.
+The dataset contains website snippets with a binary label and a pattern category.
+
+Dataset source: [Yamanalab/ec-darkpattern](https://github.com/yamanalab/ec-darkpattern)
 
 ## Run locally
 
-    python -m pip install -r requirements.txt
-    python -m streamlit run app.py
+```bash
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
+```
 
-## Contribution challenges
+## Contribution Areas
 
-The baseline is intentionally open to improvement. See the GitHub Issues for:
+Open issues are used as competition challenges. Current directions include:
 
-- Improving baseline accuracy
-- Investigating false negatives
-- Improving short-text performance
-- Multi-category detection
-- Better phrase-level explanations
+- Improve baseline accuracy
+- Reduce false negatives
+- Improve short-text classification
+- Add multi-category detection
+- Improve phrase-level explanations
 
-For ML changes, contributors should report accuracy, precision, recall, and F1-score on an appropriate held-out test set.
+For ML changes, contributors should report results on held-out data and include accuracy, precision, recall, F1-score, and a short explanation of the change.
 
-## Project structure
+## Project Structure
 
-    app.py
-    model.py
-    dataset.tsv
-    requirements.txt
-    CONTRIBUTING.md
-    LICENSE
-    PRESENTATION.md
-    tests/test_model.py
+```
+darkguard/
+├── app.py
+├── model.py
+├── dataset.tsv
+├── requirements.txt
+├── CONTRIBUTING.md
+├── PRESENTATION.md
+├── LICENSE
+├── .gitignore
+└── tests/
+    └── test_model.py
+```
+
+## Note
+
+A model prediction is an indicator produced from the training data; it is not proof of intent, deception, or harm by a website.
