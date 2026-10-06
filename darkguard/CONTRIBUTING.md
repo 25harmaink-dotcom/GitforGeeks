@@ -1,35 +1,25 @@
 # Contributing to DARKGUARD
 
-DARKGUARD is a baseline machine-learning prototype for detecting manipulative website language.
+DARKGUARD is a baseline ML prototype prepared for a coding event.
 
-## Contribution workflow
+## How to contribute
 
-1. Read the open GitHub Issues.
-2. Choose an improvement.
-3. Work on a separate branch when possible.
-4. Keep the evaluation test set separate from model training.
-5. Report measurable ML results.
-6. Explain what changed and why.
+1. Pick an open issue.
+2. Understand the current baseline before changing it.
+3. Make your changes on a branch when possible.
+4. Keep test data separate from training data.
+5. Compare your results against the baseline.
+6. Document what you changed and why.
 
-## Suggested areas
+## For ML improvements
 
-- Text preprocessing
-- TF-IDF and n-gram design
-- Model comparison
-- Short-text robustness
-- Multi-category detection
-- Explainability
-- Testing
-
-## ML reporting
-
-For model changes, include:
+Please report:
 
 - Accuracy
 - Precision
 - Recall
 - F1-score
 - Confusion matrix
-- A short explanation of the change
+- Short explanation of the approach
 
-Do not treat a model prediction as proof of user intent or harm.
+Do not use the test set to train the model.
